@@ -1,0 +1,107 @@
+const page = require('../../page');  // Ensure correct paths
+const helper = require('../../helper');
+
+describe('Create an order', () => {
+    it('should set the addresses', async () => {
+        await browser.url('/');
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+        await expect($(page.fromField)).toHaveValue('East 2nd Street, 601');
+        await expect($(page.toField)).toHaveValue('1300 1st St');
+        await page.selectFastestOption();
+        await page.clickCallATaxi();
+    });
+
+    it('should select the supportive plan', async () => {
+        await browser.url('/');
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+        await expect($(page.fromField)).toHaveValue('East 2nd Street, 601');
+        await expect($(page.toField)).toHaveValue('1300 1st St');
+        await page.selectFastestOption();
+        await page.clickCallATaxi();
+        await page.selectPlan('supportive');
+        await page.selectSupportivePlan();
+       
+    });
+
+    it('should open the phone number modal and submit the phone number with SMS code', async () => {
+        await browser.url('/');
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+        await expect($(page.fromField)).toHaveValue('East 2nd Street, 601');
+        await expect($(page.toField)).toHaveValue('1300 1st St');
+        await page.selectFastestOption();
+        await page.clickCallATaxi();
+        await page.selectPlan('supportive');
+        await page.selectSupportivePlan();
+        const phoneNumber = helper.getPhoneNumber('+1');
+        await page.fillPhoneNumber(phoneNumber);
+        await page.submitPhoneNumber(phoneNumber);
+
+    });
+
+    it('should add a credit card', async () => {
+        await browser.url('/');
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+        await expect($(page.fromField)).toHaveValue('East 2nd Street, 601');
+        await expect($(page.toField)).toHaveValue('1300 1st St');
+        await page.selectFastestOption();
+        await page.clickCallATaxi();
+        await page.selectPlan('supportive');
+        await page.selectSupportivePlan();
+        const phoneNumber = helper.getPhoneNumber('+1');
+        await page.fillPhoneNumber(phoneNumber);
+        await page.submitPhoneNumber(phoneNumber);
+        
+        await page.addCreditCard('4111111111111111', '123');
+        await expect($(page.linkButton)).not.toBeDisabled();
+    });
+
+    it('should write a message for the driver', async () => {
+        await browser.url('/');
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+        await expect($(page.fromField)).toHaveValue('East 2nd Street, 601');
+        await expect($(page.toField)).toHaveValue('1300 1st St');
+        await page.selectFastestOption();
+        await page.clickCallATaxi();
+        await page.selectPlan('supportive');
+        await page.selectSupportivePlan();
+        await page.writeMessageForDriver('Please be careful with the packages.');
+        
+    });
+
+    it('should order a blanket and handkerchief', async () => {
+        await browser.url('/');
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+        await expect($(page.fromField)).toHaveValue('East 2nd Street, 601');
+        await expect($(page.toField)).toHaveValue('1300 1st St');
+        await page.selectFastestOption();
+        await page.clickCallATaxi();
+        await page.selectPlan('supportive');
+        await page.selectSupportivePlan();
+        await page.orderBlanketAndHandkerchief();
+    });
+
+    it('should order 2 ice creams', async () => {
+        await browser.url('/');
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+        await expect($(page.fromField)).toHaveValue('East 2nd Street, 601');
+        await expect($(page.toField)).toHaveValue('1300 1st St');
+        await page.selectFastestOption();
+        await page.clickCallATaxi();
+        await page.selectPlan('supportive');
+        await page.selectSupportivePlan(); 
+        await page.orderIceCreams();
+    });
+
+    it('should show the car search modal', async () => {
+        await browser.url('/');
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+        await expect($(page.fromField)).toHaveValue('East 2nd Street, 601');
+        await expect($(page.toField)).toHaveValue('1300 1st St');
+        await page.selectFastestOption();
+        await page.clickCallATaxi();
+        await page.selectPlan('supportive');
+        await page.selectSupportivePlan(); 
+        await page.orderIceCreams();
+        await page.verifyCarSearchModalAppears();
+    });
+});    
