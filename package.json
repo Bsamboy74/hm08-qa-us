@@ -1,11 +1,12 @@
 {
-  "name": "instwdio",
+  "name": "hm08-qa-us-2024",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "wdio": "wdio run ./wdio.conf.js"
+    "wdio": "wdio run ./wdio.conf.js",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,9 @@
     "@wdio/mocha-framework": "^8.39.0",
     "@wdio/spec-reporter": "^8.39.0",
     "chromedriver": "^128.0.0",
+    "eslint": "^8.39.0",
+    "eslint-plugin-mocha": "^10.1.0",
+    "eslint-plugin-wdio": "^8.0.14",
     "geckodriver": "^4.4.3",
     "wdio-chromedriver-service": "^8.1.1",
     "wdio-geckodriver-service": "^5.0.2",
