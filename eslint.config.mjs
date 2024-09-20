@@ -20,11 +20,6 @@ export default [
         after: 'readonly',
         beforeEach: 'readonly',
         afterEach: 'readonly'
-      },
-      env: {
-        node: true,
-        browser: true,
-        es2021: true
       }
     },
     rules: {
