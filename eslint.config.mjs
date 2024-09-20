@@ -20,15 +20,15 @@ export default [
         after: 'readonly',
         beforeEach: 'readonly',
         afterEach: 'readonly'
+      },
+      env: {
+        node: true,
+        browser: true,
+        es2021: true
       }
     },
     rules: {
       // Add any specific rules here if needed
-    },
-    env: {
-      node: true,
-      browser: true,
-      es2021: true,
     },
     plugins: {
       js: pluginJs,
