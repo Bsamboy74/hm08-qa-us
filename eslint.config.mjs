@@ -1,7 +1,19 @@
-import globals from 'globals';
-import pluginJs from '@eslint/js';
+import { FlatCompat } from '@eslint/eslintrc';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Mimic CommonJS variables -- not needed if using CommonJS
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
 
 export default [
+  // Mimic ESLintRC-style extends
+  ...compat.extends('eslint:recommended'),
+
   {
     ignores: ['lib/**/*'],
   },
@@ -19,17 +31,11 @@ export default [
         before: 'readonly',
         after: 'readonly',
         beforeEach: 'readonly',
-        afterEach: 'readonly'
-      }
+        afterEach: 'readonly',
+      },
     },
     rules: {
       // Add any specific rules here if needed
     },
-    plugins: {
-      js: pluginJs,
-    },
-    extends: [
-      'eslint:recommended',
-    ],
   },
 ];
