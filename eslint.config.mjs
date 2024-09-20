@@ -10,20 +10,20 @@ export default [
     languageOptions: {
       sourceType: 'commonjs',
       ecmaVersion: 'latest',
+      globals: {
+        $: 'readonly',
+        browser: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        before: 'readonly',
+        after: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly'
+      }
     },
     rules: {
       // Add any specific rules here if needed
-    },
-    globals: {
-      $: 'readonly',
-      browser: 'readonly',
-      describe: 'readonly',
-      it: 'readonly',
-      expect: 'readonly',
-      before: 'readonly',
-      after: 'readonly',
-      beforeEach: 'readonly',
-      afterEach: 'readonly',
     },
     env: {
       node: true,
